@@ -1,0 +1,14 @@
+/* Frame-calibrated hover linework; the physical disc plane never spins. */
+.disc-hover-contour { position: absolute; inset: -4.5%; width: 109%; height: 109%; overflow: visible; pointer-events: none; opacity: 0; transition: opacity .3s cubic-bezier(.32,.72,0,1); }
+.disc-hover-contour path { fill: none; stroke: var(--ink); stroke-width: .65; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: .76 .08 .12 .04; transform-origin: 100px 100px; }
+.disc-hover-contour path + path { stroke-width: .38; stroke-dasharray: .29 .12 .46 .13; }
+.archive-disc.is-active:is(:hover,:focus-visible) .disc-hover-contour { opacity: 1; }
+.archive-disc.is-active:is(:hover,:focus-visible) .disc-hover-contour path { animation: contour-orbit 3.8s linear infinite; }
+.archive-disc.is-active:is(:hover,:focus-visible) .disc-hover-contour path + path { animation: contour-return 5.4s linear infinite; }
+@keyframes contour-orbit { to { transform: rotate(360deg); stroke-dashoffset: -.22; } }
+@keyframes contour-return { to { transform: rotate(-360deg); stroke-dashoffset: .35; } }
+@media (hover: none) { .archive-disc.is-active .disc-hover-contour { opacity: .85; } }
+@media (prefers-reduced-motion: reduce) {
+  .archive-disc.is-active .disc-hover-contour path { animation: none !important; }
+  .disc-hover-contour { transition: none; }
+}

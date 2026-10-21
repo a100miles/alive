@@ -1,0 +1,14 @@
+.impeccable/reconstruction/
+.impeccable/review/
+.playwright-cli/
+alive/frontend/.playwright-cli/
+
+# Local agent state and dependencies
+.agents/
+.codex/
+.impeccable/
+node_modules/
+.env
+.env.*
+!.env.example
+

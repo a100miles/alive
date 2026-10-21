@@ -1,0 +1,23 @@
+﻿.film-grain { position: fixed; inset: -96px; z-index: 50; pointer-events: none; opacity: var(--grain-opacity); background-repeat: repeat; animation: film-grain-shift .9s steps(1) infinite; }
+@keyframes film-grain-shift {
+  0%,100% { transform: translate(0,0); }
+  14% { transform: translate(-41px,27px); }
+  28% { transform: translate(29px,-53px); opacity: calc(var(--grain-opacity) * .88); }
+  42% { transform: translate(-67px,-19px); }
+  57% { transform: translate(53px,47px); }
+  71% { transform: translate(-17px,71px); opacity: calc(var(--grain-opacity) * 1.08); }
+  85% { transform: translate(73px,-37px); }
+}
+.site-header .desktop-nav a { transition: color .3s cubic-bezier(.32,.72,0,1); }
+.site-header .desktop-nav a::after { width: 3px; height: 3px; border-radius: 50%; left: calc(50% - 1.5px); bottom: 8px; transform: scale(0); transition: transform .3s cubic-bezier(.32,.72,0,1); }
+.site-header .desktop-nav a.active::after { transform: scale(1); }
+.site-header .desktop-nav a:hover::after { transform: scale(0); }
+.site-header .desktop-nav a.active:hover::after { transform: scale(1); }
+.site-header .desktop-nav a:is(:hover,:focus-visible) { color: var(--muted); }
+.nav-label { display: inline-block; animation: nav-enter .6s cubic-bezier(.16,1,.3,1) both; animation-delay: var(--nav-delay); }
+body:has(.intro[open]) .nav-label { animation: none; }
+.mobile-menu:not([open]) .nav-label { animation: none; }
+@keyframes nav-enter { from { transform: translateY(8px); clip-path: inset(0 0 100%); } to { transform: translateY(0); clip-path: inset(0 0 0); } }
+@media (prefers-reduced-motion: reduce) { .film-grain, .nav-label { animation: none; } }
+
+

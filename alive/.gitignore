@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+*.exe
+coverage/
+test-results/
+playwright-report/
+.cache/
+*.tsbuildinfo
