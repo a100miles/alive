@@ -856,97 +856,98 @@
   ],
   "releases": [
     {
-      "id": "soft-focus",
-      "title": "Soft focus",
-      "artist": "a.l.i.v.e / demo",
+      "id": "020226",
+      "title": "020226",
+      "artist": "Tamerlan",
       "year": 2026,
-      "type": "EP",
-      "description": "Two original synthetic audio sketches made for this demonstration. Replace them with your own recordings.",
+      "type": "Track",
+      "description": "",
       "coverImage": "/media/collections/2025/summer-2025/a-quiet-crossing.jpg",
       "trackIds": [
-        "soft-focus-01",
-        "soft-focus-02"
+        "020226-01"
       ],
       "published": true,
-      "demo": true
+      "demo": false
     },
     {
-      "id": "night-notes",
-      "title": "Night notes",
-      "artist": "a.l.i.v.e / demo",
+      "id": "dontwannabelikethis",
+      "title": "dontwannabelikethis",
+      "artist": "Tamerlan",
       "year": 2026,
-      "type": "Single",
-      "description": "An original synthetic audio sketch for the evening archive. Demonstration audio, not the owner's music.",
+      "type": "Track",
+      "description": "",
       "coverImage": "/media/collections/2025/blue-hour/reach-for-the-stars.jpg",
       "trackIds": [
-        "night-notes-01"
+        "dontwannabelikethis-01"
       ],
       "published": true,
-      "demo": true
+      "demo": false
     },
     {
-      "id": "somewhere-slow",
-      "title": "Somewhere slow",
-      "artist": "a.l.i.v.e / demo",
+      "id": "somebodynotanybody",
+      "title": "somebodynotanybody",
+      "artist": "Tamerlan",
       "year": 2026,
-      "type": "Sketch",
-      "description": "An original synthetic audio sketch with room to breathe. Demonstration audio, ready for your own work.",
+      "type": "Track",
+      "description": "",
       "coverImage": "/media/collections/2025/motion-in-frames/through-the-trees.jpg",
       "trackIds": [
-        "somewhere-slow-01"
+        "somebodynotanybody-01"
       ],
       "published": true,
-      "demo": true
+      "demo": false
     },
     {
-      "id": "unreleased-01",
-      "title": "Unreleased, 01",
-      "artist": "a.l.i.v.e / demo",
+      "id": "sunrise",
+      "title": "sunrise",
+      "artist": "Tamerlan",
       "year": 2026,
-      "type": "Work in progress",
-      "description": "An intentionally empty demonstration release. Add a recording when you are ready to share it.",
+      "type": "Track",
+      "description": "",
       "coverImage": "/media/collections/2025/summer-2025/branches-on-cream.jpg",
-      "trackIds": [],
+      "trackIds": [
+        "sunrise-01"
+      ],
       "published": true,
-      "demo": true
+      "demo": false
     }
   ],
   "tracks": [
     {
-      "id": "soft-focus-01",
-      "releaseId": "soft-focus",
-      "title": "Soft focus, I",
-      "audioUrl": "/media/audio/soft-focus-01.wav",
-      "duration": 18,
+      "id": "020226-01",
+      "releaseId": "020226",
+      "title": "020226",
+      "audioUrl": "/media/audio/020226.mp3",
+      "duration": 91.689775,
       "order": 1,
-      "demo": true
+      "demo": false
     },
     {
-      "id": "soft-focus-02",
-      "releaseId": "soft-focus",
-      "title": "Soft focus, II",
-      "audioUrl": "/media/audio/soft-focus-02.wav",
-      "duration": 18,
-      "order": 2,
-      "demo": true
+      "id": "dontwannabelikethis-01",
+      "releaseId": "dontwannabelikethis",
+      "title": "dontwannabelikethis",
+      "audioUrl": "/media/audio/dontwannabelikethis.mp3",
+      "duration": 145.972225,
+      "order": 1,
+      "demo": false
     },
     {
-      "id": "night-notes-01",
-      "releaseId": "night-notes",
-      "title": "Night notes",
-      "audioUrl": "/media/audio/night-notes-01.wav",
-      "duration": 18,
+      "id": "somebodynotanybody-01",
+      "releaseId": "somebodynotanybody",
+      "title": "somebodynotanybody",
+      "audioUrl": "/media/audio/somebodynotanybody.wav",
+      "duration": 113.8785034,
       "order": 1,
-      "demo": true
+      "demo": false
     },
     {
-      "id": "somewhere-slow-01",
-      "releaseId": "somewhere-slow",
-      "title": "Somewhere slow",
-      "audioUrl": "/media/audio/somewhere-slow-01.wav",
-      "duration": 18,
+      "id": "sunrise-01",
+      "releaseId": "sunrise",
+      "title": "sunrise",
+      "audioUrl": "/media/audio/sunrise.mp3",
+      "duration": 145.2408,
       "order": 1,
-      "demo": true
+      "demo": false
     }
   ]
 }

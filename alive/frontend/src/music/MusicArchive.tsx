@@ -66,7 +66,7 @@ export function MusicArchive({ releases, tracks }: { releases: Release[]; tracks
             aria-pressed={index === activeIndex} tabIndex={index === activeIndex ? 0 : -1}
             onClick={() => { if (index === activeIndex) listening.current?.scrollIntoView({ behavior: reduced ? 'instant' : 'smooth', block: 'center' }); else goTo(index) }}>
             <span className="disc-object"><CoverArt className="disc-art" src={item.coverImage} loading={Math.abs(index - activeIndex) < 2 ? 'eager' : 'lazy'}/><span className="disc-finish"/>
-              <span className="disc-print"><span>{item.title}</span><span>a.l.i.v.e<br/>{item.year}</span></span><span className="disc-hub"/>
+              <span className="disc-print"><span>{item.title}</span></span><span className="disc-hub"/>
               {audio.playing && audio.release?.id === item.id && <span className="disc-play-state">Playing</span>}
             </span><svg className="disc-hover-contour" viewBox="0 0 200 200" aria-hidden="true">
               <path pathLength="1" d="M100 4 C124 3 144 11 161 25 L180 48 C190 67 196 82 195 103 L188 136 C179 156 163 173 142 184 L111 195 C88 197 66 192 46 179 L22 155 C10 135 4 117 5 95 L12 62 C22 41 38 23 60 13 L83 6Z"/>

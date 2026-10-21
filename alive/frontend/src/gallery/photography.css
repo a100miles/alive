@@ -3,16 +3,16 @@
 .reel-toolbar h1 { font-family: var(--font-display); font-size: clamp(27px,2.4vw,38px); line-height: 1.1; letter-spacing: -.025em; }
 .reel-toolbar p { color: var(--muted); font-size: 11px; margin-top: 12px; }
 .reel-filters { display: flex; align-items: flex-start; gap: 20px; pointer-events: auto; }
-.reel-filters button { min-height: 44px; font-size: 11px; padding: 8px 0; border-bottom: 1px solid transparent; background: var(--paper); }
+.reel-filters button { min-height: 44px; font-size: 11px; padding: 8px 0; border-bottom: 1px solid transparent; background: transparent; transition: color .2s, border-color .2s; }
+.reel-filters button:is(:hover, :focus-visible, :active) { background: transparent; }
+.reel-filters button:hover { color: var(--muted); }
 .reel-filters button[aria-pressed=true] { border-color: var(--ink); }
 .reel-filters button:last-child { margin-left: 25px; color: var(--muted); }
-.reel-stage { position: absolute; inset: 0; touch-action: pan-y; cursor: grab; outline-offset: -6px; }
+.reel-stage { z-index: 0; position: absolute; inset: 0; touch-action: pan-y; cursor: grab; outline-offset: -6px; }
 .reel-stage:active { cursor: grabbing; }
 .reel-plane { position: absolute; width: 26vw; height: 34vh; top: calc(44.5% - 17vh); left: calc(48.5% - 13vw); padding: 0; display: grid; place-items: center; transform-origin: 50% 50%; cursor: inherit; touch-action: none; }
 .reel-plane img { width: auto; height: auto; max-width: 100%; max-height: 100%; object-fit: contain; pointer-events: none; }
 .reel-plane .image-missing { width: 100%; height: 100%; }
-.reel-expand { position: absolute; bottom: 12px; right: 12px; background: var(--paper); width: 38px; height: 38px; display: grid; place-items: center; opacity: 0; transition: opacity .2s; }
-.reel-plane.is-active:hover .reel-expand, .reel-plane:focus-visible .reel-expand { opacity: 1; }
 .reel-context { position: absolute; top: 44%; left: var(--gutter); max-width: 23%; pointer-events: none; font-size: 11px; }
 .reel-context p { margin: 12px 0 28px; font-size: 15px; }
 .reel-context > span { color: var(--muted); line-height: 1.6; }
@@ -50,3 +50,23 @@
   .reel-mobile-caption h2 { font-size: 17px; margin-bottom: 6px; }
   .reel-mobile-caption > span { color: var(--muted); font-size: 11px; }
 }
+
+/* Only image pixels crossing the measured toolbar boundary dissolve.
+   GSAP poses stay intact; no per-frame layout reads or scroll listeners. */
+.reel-images {
+  position: absolute; inset: 0; isolation: isolate;
+  --reel-fade-depth: clamp(64px, 9vh, 96px);
+  mask-image: linear-gradient(to bottom, transparent var(--reel-protected-bottom, 100px), #0003 calc(var(--reel-protected-bottom, 100px) + var(--reel-fade-depth) * .3), #000b calc(var(--reel-protected-bottom, 100px) + var(--reel-fade-depth) * .7), #000 calc(var(--reel-protected-bottom, 100px) + var(--reel-fade-depth)), #000 calc(100% - var(--reel-bottom-protected, 64px) - var(--reel-fade-depth)), #000b calc(100% - var(--reel-bottom-protected, 64px) - var(--reel-fade-depth) * .7), #0003 calc(100% - var(--reel-bottom-protected, 64px) - var(--reel-fade-depth) * .3), transparent calc(100% - var(--reel-bottom-protected, 64px)));
+}
+.reel-dissolve {
+  position: absolute; z-index: 100; inset: 0 0 auto;
+  height: calc(var(--reel-protected-bottom, 100px) + var(--reel-fade-depth));
+  pointer-events: none;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  mask-image: linear-gradient(to bottom, #000 var(--reel-protected-bottom, 100px), #000b calc(var(--reel-protected-bottom, 100px) + var(--reel-fade-depth) * .3), transparent 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reel-dissolve { backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+.reel-dissolve--bottom { top: auto; bottom: 0; height: calc(var(--reel-bottom-protected, 64px) + var(--reel-fade-depth)); mask-image: linear-gradient(to top, #000 var(--reel-bottom-protected, 64px), #000b calc(var(--reel-bottom-protected, 64px) + var(--reel-fade-depth) * .3), transparent 100%); }

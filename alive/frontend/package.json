@@ -11,6 +11,7 @@
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "@fontsource/arvo": "^5.3.0",
     "@fontsource/bodoni-moda": "^5.3.0",
     "@fontsource/caveat": "^5.3.0",
     "@fontsource/cutive-mono": "^5.3.0",

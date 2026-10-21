@@ -28,8 +28,8 @@ func TestLoadArchiveAndProtectData(t *testing.T) {
 		t.Fatal(err)
 	}
 	releases[0].TrackIDs[0] = "changed"
-	release, err := repo.Release(ctx, "soft-focus")
-	if err != nil || release.TrackIDs[0] != "soft-focus-01" {
+	release, err := repo.Release(ctx, "020226")
+	if err != nil || release.TrackIDs[0] != "020226-01" {
 		t.Fatal("callers can mutate repository releases")
 	}
 }

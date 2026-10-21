@@ -139,3 +139,51 @@ The entire photo catalog now uses the owner's 48 supplied images: Blue hour (5),
 Four narrow, pointer-transparent frosted strips soften the top, bottom, left and right of the home film area. Each uses 7px backdrop blur, a restrained milk tint and an inward gradient mask; the center remains sharp. This explicit request supersedes the previous sharp-perimeter direction. The continuous zero-gap movement, pause behavior and reduced-motion alternative remain intact.
 
 The larger photo reel loads at most nine nearby images, preserving its existing geometry and wrap behavior. Collection filters wrap appropriately on tablet and retain a paper backing for contrast over passing image planes. The owner's supplied photo library is now the required source for future imagery.
+
+## Film slider clear edges - 2026-10-21
+
+Removed the four frosted perimeter overlays from the home film slider at the owner's request. Films now have clear edges. Slider geometry, continuous movement, playback controls and reduced-motion behavior are preserved.
+
+Verification: frontend typecheck/lint/build and 10 unit tests passed; Go test/fmt/vet passed. The existing photo-library browser check passed at 1440, 768 and 390px and captured the clear film perimeter.
+
+
+## Photography interface dissolve - 2026-10-21
+
+The reel keeps its reconstructed transforms, media and typography. Its image layer now fades through a 64-96px vertical band below the measured toolbar bottom. A transparent, masked 6px backdrop blur softens only that band. The fully protected area contains no visible image pixels, and the central gallery remains unfiltered. The existing GSAP motion carries images through the stationary CSS treatment in either direction. ResizeObserver updates the boundary when toolbar wrapping changes and disconnects on unmount; no per-frame geometry reads or new scroll listeners are added.
+
+Navigation remains above the isolated reel, with the toolbar above the image layer. Album labels have transparent normal, hover, focus and active backgrounds, a selected underline and visible keyboard outlines. Reduced motion retains the static alpha boundary and disables the blur. The existing #f8f7f3 paper token and film grain are preserved; the request's #F5F2EB differs from the current project token, so no unrelated palette change was made.
+
+## Lower reel boundary and supplied music - 2026-10-21
+
+The photo reel now applies the same spatial fade/blur at its lower edge, measured from the bottom controls, while the central photograph stays sharp. Expand icons were removed from both gallery views; photo click/tap and keyboard fullscreen access remain available.
+
+The music catalog now contains 020226, dontwannabelikethis, somebodynotanybody and sunrise from public/media/audio, replacing all synthesized demo releases and tracks. Filename stems are the titles, existing owner photographs supply covers, and durations were read from local media metadata. The existing a.l.i.v.e display artist and 2026 archive edition are retained, without invented release descriptions. No recording is marked as demo. The WAV has no embedded year; 2026 is its archive edition, not a claim about recording date.
+
+Verification: frontend typecheck/lint/build and 10 unit tests passed; Go test/fmt/vet passed after updating old catalog references. Browser tests passed for four real tracks (playback, durations, seek, HTTP range support, persistent playback across navigation) and reel behavior at 320/390/768/1440px. Desktop/mobile captures show the lower dissolve and no expand icons. No Safari or physical-device testing was performed.
+
+## Artist and contact links - 2026-10-21
+
+All four releases now display the supplied artist name Tamerlan. Contact links use monochrome email, Instagram, Spotify and GitHub icons with the owner's exact destinations; Apple Music and the unavailable-details note are removed. Icons retain accessible link names, 56px targets, keyboard outlines and understated hover color. External links open separately with noopener/noreferrer; email uses mailto.
+
+Verified exact href values, all four API artist values, desktop/mobile layout at 1440/390px and keyboard focus in Edge. Frontend check/build and 10 unit tests passed; Go test/fmt/vet passed. External services were not opened and no message was sent.
+
+## Disc title space - 2026-10-21
+
+Removed the secondary a.l.i.v.e/year printing from the music discs. Titles now occupy the full existing label band, with font size tied to disc diameter (14-38px), 1.15 line height and a wrapping fallback. Removed the obsolete last-child typography rules so the sole title cannot inherit the tiny metadata font. Disc poses, artwork and playback behavior are unchanged.
+
+Verification: all four titles fit at 320, 390, 768 and 1440px; desktop/mobile captures inspected. Frontend typecheck/lint/build and 10 unit tests passed; Go test/fmt/vet passed.
+
+## Navbar Arvo - 2026-10-21
+
+Desktop and mobile navigation links now use self-hosted Arvo regular (Latin), with its OFL license included. Other typography is preserved. Verified font loading and computed families in Edge at desktop/mobile sizes, plus mobile menu keyboard dismissal. Frontend check/build, 10 unit tests and Go test/fmt/vet passed.
+
+
+## Centered home signature - 2026-10-21
+
+The home wordmark is centered horizontally with actual life, centered below it. Typography scale and signature animation are preserved. Desktop/mobile centering was measured and visually inspected; frontend check/build, 10 unit tests and Go checks passed.
+
+
+## Edge-to-edge home films - 2026-10-21
+
+Removed the home-spread side padding and wide-screen max-width. The continuous film strip now reaches both viewport edges. Repetitions account for viewport width plus an offscreen film buffer, avoiding empty space on wide screens; distant video sources still detach. Keyboard focus is drawn inside the edge-to-edge region. Verified bounds and uninterrupted coverage during recycling at 390/1440/1920/2560px. Frontend check/build, 10 unit tests and Go test/fmt/vet passed.
+

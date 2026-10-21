@@ -8,7 +8,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal'
 import { DiscNavigation } from '../motion/discNavigation'
 import { createDiscFlight } from '../motion/discFlight'
 
-const titles: Record<string,string> = { '/':'actual life, in fragments','/photography':'Photography','/music':'Music','/about':'About','/contact':'Contact' }
+const titles: Record<string,string> = { '/':'actual life,','/photography':'Photography','/music':'Music','/about':'About','/contact':'Contact' }
 gsap.registerPlugin(CustomEase)
 CustomEase.create('archive-aperture', '.4,0,.18,1')
 export function SceneRoutes({ children }: { children: ReactNode }) {

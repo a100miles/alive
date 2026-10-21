@@ -54,7 +54,7 @@ func TestAPIEndpoints(t *testing.T) {
 	for _, target := range []string{
 		"/api/v1/health", "/api/v1/albums", "/api/v1/albums/blue-hour",
 		"/api/v1/photos", "/api/v1/photos/cold-flame", "/api/v1/photos?album=blue-hour",
-		"/api/v1/releases", "/api/v1/releases/soft-focus", "/api/v1/releases/unreleased-01", "/api/v1/tracks/soft-focus-01",
+		"/api/v1/releases", "/api/v1/releases/020226", "/api/v1/releases/sunrise", "/api/v1/tracks/020226-01",
 	} {
 		t.Run(target, func(t *testing.T) {
 			response := request(server, http.MethodGet, target)
@@ -144,13 +144,13 @@ func TestUnpublishedReleasesAndTracksArePrivate(t *testing.T) {
 	archive := fixture(t)
 	archive.Releases[0].Published = false
 	server := testServer(t, archive, config.Config{})
-	for _, target := range []string{"/api/v1/releases/soft-focus", "/api/v1/tracks/soft-focus-01", "/api/v1/tracks/soft-focus-02"} {
+	for _, target := range []string{"/api/v1/releases/020226", "/api/v1/tracks/020226-01", "/api/v1/tracks/020226-02"} {
 		if response := request(server, "GET", target); response.Code != http.StatusNotFound {
 			t.Fatalf("private content exposed at %s", target)
 		}
 	}
 	response := request(server, "GET", "/api/v1/releases")
-	if response.Code != http.StatusOK || strings.Contains(response.Body.String(), "soft-focus") {
+	if response.Code != http.StatusOK || strings.Contains(response.Body.String(), "020226") {
 		t.Fatalf("public list contains private release: %s", response.Body.String())
 	}
 }

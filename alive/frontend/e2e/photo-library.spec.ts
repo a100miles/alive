@@ -34,13 +34,8 @@ test('all supplied photographs are served and the archive has no sample images',
     await page.setViewportSize({ width, height: 900 })
     await page.goto('/')
     await page.locator('.home-video-stage').scrollIntoViewIfNeeded()
-    await expect(page.locator('.home-video-glass')).toHaveCount(4)
-    for (const edge of ['top', 'bottom', 'left', 'right']) {
-      await expect(page.locator(`.home-video-glass--${edge}`)).toHaveCSS('backdrop-filter', 'blur(7px)')
-      await expect(page.locator(`.home-video-glass--${edge}`)).toHaveCSS('pointer-events', 'none')
-    }
     await page.waitForTimeout(1800)
-    await page.screenshot({ path: `../../.impeccable/photo-review/glass-${width}.png` })
+    await page.screenshot({ path: `../../.impeccable/photo-review/films-${width}.png` })
     await page.goto('/photography')
     await expect(page.locator('.reel-plane.is-active img')).toBeVisible()
     await expect.poll(() => page.locator('.reel-plane.is-active img').evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true)

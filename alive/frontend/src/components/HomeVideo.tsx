@@ -1,4 +1,5 @@
-﻿import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useViewport } from '../hooks/useViewport'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { startFilmStrip } from './filmStrip'
 import './home-video.css'
@@ -7,9 +8,13 @@ export function HomeVideo({ sources }: { sources: readonly string[] }) {
   const stage = useRef<HTMLDivElement>(null)
   const action = useRef<() => void>(() => {})
   const reduced = useReducedMotion()
+  const { width } = useViewport()
+  // Match the strip height; the supplied films have a 3:4 aspect ratio.
+  const filmHeight = width <= 600 ? Math.max(300, Math.min(420, width * .94)) : Math.max(320, Math.min(560, width * .4))
+  const requiredFilms = Math.max(5, Math.ceil(width / (filmHeight * .75)) + 1)
   const [playing, setPlaying] = useState(false)
   // Short collections repeat only enough to fill the strip and its offscreen buffer.
-  const films = sources.length ? Array.from({ length: sources.length * Math.ceil(5 / sources.length) }, (_, index) => sources[index % sources.length]) : []
+  const films = sources.length ? Array.from({ length: sources.length * Math.ceil(requiredFilms / sources.length) }, (_, index) => sources[index % sources.length]) : []
   const sourceKey = films.join('|')
   useEffect(() => {
     if (!stage.current || !sourceKey) return
@@ -34,7 +39,6 @@ export function HomeVideo({ sources }: { sources: readonly string[] }) {
         <span className="film-unavailable" role="status">This film is unavailable.</span>
       </div>)}
     </div>
-    {['top', 'bottom', 'left', 'right'].map(edge => <span key={edge} className={`home-video-glass home-video-glass--${edge}`} aria-hidden="true"/>)}
   </div>
 }
 

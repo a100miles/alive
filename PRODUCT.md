@@ -21,7 +21,7 @@ Five routes: home, photography, music, about and contact. Accessible touch/keybo
 Preserve `a.l.i.v.e`, actual life, intimate and calm editorial atmosphere. Warm neutral palette, dominant images and physical discs. Huy Phan for intro/gallery, A24 interactive archive for disc browsing, Jesper Landberg for scene transitions. These references guide behavior, never supply copied media or code.
 
 ## Evidence on Hand
-Detailed user briefs and 48 owner-provided photographs across five albums in the 2025 and 2026 collections. Original images, edits and proportions are preserved. Photography and release artwork use these supplied images; audio remains synthesized demonstration material and is labeled accordingly. Real audio, biography and contact destinations remain unconfigured.
+Detailed user briefs and 48 owner-provided photographs across five albums in the 2025 and 2026 collections. Original images, edits and proportions are preserved. Photography and release artwork use these supplied images; audio now uses the four supplied recordings in media/audio. Biography and contact destinations remain unconfigured.
 
 ## Product Principles
 Content leads. Exploration remains effortless. Animation explains movement. No fabricated personal claims. Replace demo content without changing presentation code.
@@ -30,4 +30,4 @@ Content leads. Exploration remains effortless. Animation explains movement. No f
 Keyboard access, visible focus, reduced motion, touch targets, semantic structure, audio without autoplay, focus restoration and meaningful empty/error states.
 
 ## Open Decisions
-Real library, artist name, contact links and deployment destination await the owner. Design and implementation choices are delegated by the supplied brief.
+Artist name, contact links and deployment destination await the owner. Design and implementation choices are delegated by the supplied brief.

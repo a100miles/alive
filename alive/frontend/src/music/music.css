@@ -12,10 +12,9 @@
 .music-cover-fallback { display: block; background: #b9b8af; }
 .disc-finish { position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 1px #fff8, inset 0 0 0 5px #c7c6bd80, inset 0 0 35px #0002; background: conic-gradient(from 30deg, transparent 0deg, #fff5 45deg, transparent 105deg, #0002 160deg, transparent 205deg, #fff3 270deg, transparent 350deg); pointer-events: none; }
 .disc-hub { position: absolute; inset: 39%; border-radius: 50%; border: 1px solid #ffffff90; background: conic-gradient(from 15deg, #d2d1cbe0, #faf9f0e8, #777a77eb, #e9e9e2ef, #c0c5bee8, #fffff2e8, #a7a9a4e8, #d2d1cbe0); box-shadow: 0 0 0 5px #d4d2c970, 0 0 0 6px #fffa; }
-.disc-print { position: absolute; inset: 14% 15% auto; display: flex; align-items: start; justify-content: space-between; gap: 1rem; color: var(--ink); text-align: left; font-size: clamp(0.6rem, 1vw, 0.85rem); line-height: 1.3; pointer-events: none; }
+.disc-print { position: absolute; inset: 14% 15% auto; display: block; color: var(--ink); text-align: left; font-size: clamp(0.6rem, 1vw, 0.85rem); line-height: 1.3; pointer-events: none; }
 .disc-print > span { padding: 0.2em 0.35em; background: var(--paper); }
-.disc-print > span:first-child { max-width: 65%; }
-.disc-print > span:last-child { text-align: right; font-size: 0.72em; }
+.disc-print > span { display: inline-block; max-width: 100%; overflow-wrap: anywhere; }
 .disc-play-state { position: absolute; bottom: 17%; left: 50%; transform: translateX(-50%); padding: 4px 9px; background: var(--paper); color: var(--ink); font-size: 11px; line-height: 1.4; }
 .disc-navigation { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-inline: var(--gutter, clamp(1.25rem, 5vw, 5rem)); margin-block: 0 2rem; }
 .disc-hint { margin: 0; color: var(--muted); font-size: 0.75rem; }
@@ -123,9 +122,8 @@
 .music-archive--spatial .disc-object { mask-image: radial-gradient(circle, transparent 0 9%, #000 9.2%); background: var(--quiet); }
 .music-archive--spatial .disc-finish { box-shadow: inset 0 0 0 2px #eeeeea, inset 0 0 0 5px #a9aaa4, inset 0 0 0 7px #deded4; background: linear-gradient(130deg,#fff2,transparent 38%,#0001 66%,#fff2); }
 .music-archive--spatial .disc-hub { inset: 38%; background: radial-gradient(circle,transparent 0 42%,#b6b9bb 43% 50%,#e1e3e3 51% 57%,#9da1a3 58% 65%,#c2c6c8 66% 78%,#949a9e 79% 89%,#b5babc 90%); box-shadow: none; border: 0; }
-.music-archive--spatial .disc-print { inset: 17% 14% auto; font-family: var(--font-display); font-size: clamp(21px,3vw,46px); }
+.music-archive--spatial .disc-print { inset: 17% 14% auto; font-family: var(--font-display); font-size: clamp(14px, calc(var(--disc-size, 420px) * .055), 38px); line-height: 1.15; }
 .music-archive--spatial .disc-print > span { background: var(--paper); padding: 2px 9px; }
-.music-archive--spatial .disc-print > span:last-child { font-family: var(--font-sans); font-size: 10px; line-height: 1.5; }
 .release-introduction--floating { position: absolute; left: var(--gutter); top: 8px; z-index: 24; width: min(24vw,330px); pointer-events: none; }
 .release-introduction--floating h2 { font-family: var(--font-display); font-size: clamp(25px,2.7vw,42px); margin: 0 0 12px; line-height: 1.1; }
 .release-data { margin: 0; font-size: 12px; }
@@ -145,8 +143,6 @@
   .release-data { font-size: 11px; }
   .release-data > div { padding: 5px 0; }
   .music-archive--spatial .archive-disc { top: calc(44.6% - var(--disc-size) / 2); }
-  .music-archive--spatial .disc-print { font-size: 24px; }
-  .music-archive--spatial .disc-print > span:last-child { font-size: 8px; }
   .music-archive--spatial .disc-hint { font-size: 10px; max-width: 100px; }
   .music-details-link { display: none; }
   .music-archive--spatial .release-details { grid-template-columns: 1fr; gap: 24px; }

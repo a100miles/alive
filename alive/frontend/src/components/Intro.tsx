@@ -52,7 +52,7 @@ export function Intro({ ready, image }: { ready: boolean; image?: string }) {
   if(!visible||reduced)return null
   return <dialog ref={panel} className="intro intro--reconstructed" aria-label="Introducing a.l.i.v.e" onCancel={event=>{event.preventDefault();finish(true)}}>
     <div ref={dark} className="intro-black"/>
-    <div ref={paper} className="intro-paper"><div className="intro-center"><div className="intro-word">a.l.i.v.e</div><p>actual life, in fragments.</p></div></div>
+    <div ref={paper} className="intro-paper"><div className="intro-center"><div className="intro-word">a.l.i.v.e</div><p>actual life,</p></div></div>
     <div className="intro-controls"><span role="status">{ready&&assetReady?'The archive is ready':'Opening the archive'}</span><button className="text-button" onClick={()=>finish(true)}>Skip intro</button></div>
   </dialog>
 }

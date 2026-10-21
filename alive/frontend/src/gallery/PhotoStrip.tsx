@@ -1,5 +1,5 @@
 ﻿import { useEffect, useRef, useState } from 'react'
-import { ArrowLeft, ArrowRight, Maximize2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import type { Album, Photo } from '../types'
 import { useReducedMotion } from '../hooks/useReducedMotion'
 import { MediaImage } from '../components/MediaImage'
@@ -63,7 +63,7 @@ export function PhotoStrip({ albums, photos }: { albums: Album[]; photos: Photo[
       drag.current.lastX = event.clientX; drag.current.time = now
       event.currentTarget.scrollLeft = drag.current.start - delta
     }} onPointerUp={finishDrag} onPointerCancel={finishDrag} onPointerLeave={() => { if (!drag.current.moved) finishDrag() }} onClickCapture={event => { if (drag.current.moved) { event.preventDefault(); event.stopPropagation(); drag.current.moved = false } }}>
-      {collection.map((photo, index) => <figure className={`photo-slide ${index === active ? 'is-active' : ''}`} key={photo.id} style={{ aspectRatio: `${photo.width} / ${photo.height}` }}><button aria-label={`Open ${photo.title} fullscreen`} onClick={() => { setActive(index); setViewer(index) }}><MediaImage src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} eager={index < 2}/><span className="expand-image"><Maximize2 size={20}/></span></button></figure>)}
+      {collection.map((photo, index) => <figure className={`photo-slide ${index === active ? 'is-active' : ''}`} key={photo.id} style={{ aspectRatio: `${photo.width} / ${photo.height}` }}><button aria-label={`Open ${photo.title} fullscreen`} onClick={() => { setActive(index); setViewer(index) }}><MediaImage src={photo.src} alt={photo.alt} width={photo.width} height={photo.height} eager={index < 2}/></button></figure>)}
     </div><div className="gallery-details page-padding"><div aria-live="polite"><h2>{current?.title}</h2><p>{[current?.demo ? 'Sample photograph' : current?.location, current?.year].filter(Boolean).join(' / ')}</p></div><span className="gallery-hint">Drag to wander. Select to stay.</span><div className="gallery-arrows"><button className="icon-button" aria-label="Previous photo" disabled={active === 0} onClick={() => go(active - 1)}><ArrowLeft size={22}/></button><span>{String(active + 1).padStart(2, '0')} / {String(collection.length).padStart(2, '0')}</span><button className="icon-button" aria-label="Next photo" disabled={active === collection.length - 1} onClick={() => go(active + 1)}><ArrowRight size={22}/></button></div></div></> : <div className="empty-state page-padding"><h2>Room for new moments.</h2><p>There are no photographs in this collection yet.</p></div>}
     {viewer !== null && <PhotoViewer photos={collection} index={viewer} onIndex={index => { setViewer(index); go(index) }} onClose={() => setViewer(null)}/>}
   </div>
