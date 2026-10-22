@@ -4,7 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => sessionStorage.setItem('alive-intro-seen', '1'))
 })
 
-test('film strip preserves ratios, bounds decoders, and pauses for user, offscreen and reduced motion', async ({ page }) => {
+test('film strip ignores pause gestures and suspends offscreen and for reduced motion', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto('/')
@@ -20,9 +20,14 @@ test('film strip preserves ratios, bounds decoders, and pauses for user, offscre
     return { actual: video.videoWidth / video.videoHeight, displayed: rect.width / rect.height, fit: getComputedStyle(video).objectFit }
   }))
   ratios.forEach(ratio => { expect(ratio.actual).toBe(.75); expect(ratio.displayed).toBeCloseTo(.75, 2); expect(ratio.fit).toBe('contain') })
-  await stage.press('Space')
-  await expect.poll(() => page.locator('video').evaluateAll(videos => videos.every(video => (video as HTMLVideoElement).paused))).toBe(true)
-  await stage.press('Space')
+  await stage.click()
+  await stage.dispatchEvent('keydown', { key: ' ' })
+  await stage.dispatchEvent('keydown', { key: 'Enter' })
+  await expect(stage).toHaveAttribute('aria-label', 'Films.')
+  await expect(stage).not.toHaveAttribute('tabindex')
+  const position = await page.locator('.film-strip-item').first().evaluate(item => item.getBoundingClientRect().x)
+  await expect.poll(() => page.locator('.film-strip-item').first().evaluate(item => item.getBoundingClientRect().x)).toBeLessThan(position - 5)
+  expect(await page.locator('video').evaluateAll(videos => videos.some(video => !(video as HTMLVideoElement).paused))).toBe(true)
   await page.setViewportSize({ width: 1440, height: 600 })
   await page.locator('.site-footer').scrollIntoViewIfNeeded()
   await expect.poll(() => page.locator('video').evaluateAll(videos => videos.every(video => (video as HTMLVideoElement).paused))).toBe(true)

@@ -1,5 +1,5 @@
 /** Recycle each physical film only outside the viewport; no duplicate-track seam. */
-export function startFilmStrip(stage: HTMLDivElement, sources: string[], reduced: boolean, reportPlaying: (value: boolean) => void) {
+export function startFilmStrip(stage: HTMLDivElement, sources: string[], reduced: boolean) {
   const items = Array.from(stage.querySelectorAll<HTMLElement>('.film-strip-item'))
   const videos = items.map(item => item.querySelector('video')!)
   const ratios = sources.map(() => .75)
@@ -58,7 +58,7 @@ export function startFilmStrip(stage: HTMLDivElement, sources: string[], reduced
   }
   function update() {
     cancelAnimationFrame(frame); frame = 0; lastTime = 0
-    syncMedia(); reportPlaying(running())
+    syncMedia()
     if (running() && !reduced) frame = requestAnimationFrame(tick)
   }
   const measure = () => {
@@ -96,11 +96,6 @@ export function startFilmStrip(stage: HTMLDivElement, sources: string[], reduced
   stage.addEventListener('scroll', scroll, { passive: true })
   document.addEventListener('visibilitychange', update)
   return {
-    toggle() {
-      requested = !requested
-      if (requested) { failed.clear(); items.forEach(item => { delete item.dataset.failed }); videos.forEach(video => { if (video.error) video.removeAttribute('src') }) }
-      update()
-    },
     dispose() {
       disposed = true; cancelAnimationFrame(frame); observer.disconnect(); resize.disconnect(); cleanups.forEach(cleanup => cleanup())
       stage.removeEventListener('scroll', scroll); document.removeEventListener('visibilitychange', update)

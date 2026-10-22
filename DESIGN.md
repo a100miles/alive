@@ -187,3 +187,23 @@ The home wordmark is centered horizontally with actual life, centered below it. 
 
 Removed the home-spread side padding and wide-screen max-width. The continuous film strip now reaches both viewport edges. Repetitions account for viewport width plus an offscreen film buffer, avoiding empty space on wide screens; distant video sources still detach. Keyboard focus is drawn inside the edge-to-edge region. Verified bounds and uninterrupted coverage during recycling at 390/1440/1920/2560px. Frontend check/build, 10 unit tests and Go test/fmt/vet passed.
 
+## Smaller home wordmark - 2026-10-22
+
+Reduced the home signature from clamp(100px, 19vw, 300px) to clamp(76px, 14vw, 220px), with 18vw instead of 24vw on mobile. Line-height is now 1.1 instead of 1.2. Centering, typeface and signature animation remain intact.
+
+Frontend typecheck/lint/build, all 10 unit tests and Go test/fmt/vet passed. Edge desktop/mobile captures were inspected with reduced motion: measured wordmark sizes were 201.6px at 1440px and 70.2px at 390px. Fresh desktop/mobile views had no horizontal overflow; an immediate desktop-to-mobile resize check reported overflow before a fresh mobile check passed. Media was not visible in these captures, so visual review was limited to the wordmark. Safari and physical devices were not tested.
+
+## Viewport home title - 2026-10-22
+
+The home title now spans the viewport width and fills the first screen below navigation, with centered wordmark and the supplied caption “actual life by tamerlan yessimov”. Its minimum height subtracts the existing 88px desktop / 76px mobile header from 100svh; zero outer margins and internal gutters preserve usable spacing. Content can grow if it needs more height.
+
+Frontend typecheck/lint/build, all 10 unit tests and Go test/fmt/vet passed. Edge checks at 1440, 390 and 320px confirmed exact caption text, full width, the section bottom at the viewport bottom and no horizontal overflow. Desktop/mobile screenshots were visually inspected. Safari and physical devices were not tested.
+
+## Larger films and scroll departure - 2026-10-22
+
+Removed the living typography installation and its obsolete component, styles and browser test. Home film height is approximately 25% larger: clamp(400px, 50vw, 700px) on desktop and clamp(375px, 117.5vw, 525px) on mobile. The repetition calculation matches these dimensions; original film proportions and the existing native reduced-motion browsing alternative are preserved.
+
+The home title and existing reveal sections now fade progressively as their lower edge travels from 45% of the viewport to the top, using the existing GSAP ScrollTrigger with 0.35s scrub smoothing. Separate entrance and departure opacity factors avoid competing tweens. The intro animates an inner title wrapper, leaving the outer scroll fade independent. Focused sections remain fully visible; changing reduced motion clears effects, and GSAP context cleanup restores styles on navigation.
+
+Verification: frontend typecheck/lint/build and all 10 unit tests passed; Go test/fmt/vet passed. Four existing Edge film tests passed, covering media ratios, bounded loading, playback controls, offscreen suspension, reduced motion and desktop/tablet/mobile inspection. Additional desktop/mobile checks confirmed installation removal, larger film bounds (700px at 1440px and 458px at 390px), original 3:4 ratio, no horizontal overflow, departure opacity near 0.54 partway through scrolling, reverse restoration and dynamic reduced-motion reset. Desktop/mobile film screenshots were inspected. Safari and physical devices were not tested.
+

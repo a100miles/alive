@@ -3,7 +3,7 @@
 .reel-toolbar h1 { font-family: var(--font-display); font-size: clamp(27px,2.4vw,38px); line-height: 1.1; letter-spacing: -.025em; }
 .reel-toolbar p { color: var(--muted); font-size: 11px; margin-top: 12px; }
 .reel-filters { display: flex; align-items: flex-start; gap: 20px; pointer-events: auto; }
-.reel-filters button { min-height: 44px; font-size: 11px; padding: 8px 0; border-bottom: 1px solid transparent; background: transparent; transition: color .2s, border-color .2s; }
+.reel-filters button { min-height: 44px; font-size: 11px; text-transform: lowercase; padding: 8px 0; border-bottom: 1px solid transparent; background: transparent; transition: color .2s, border-color .2s; }
 .reel-filters button:is(:hover, :focus-visible, :active) { background: transparent; }
 .reel-filters button:hover { color: var(--muted); }
 .reel-filters button[aria-pressed=true] { border-color: var(--ink); }

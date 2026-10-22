@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
 import type { Archive } from '../types'
 import { HomeVideo } from '../components/HomeVideo'
-import { LivingTypography } from '../components/LivingTypography'
+import { HomePencil } from '../components/HomePencil'
 import { site } from '../config'
 import { DiscNavigation } from '../motion/discNavigation'
 
@@ -11,11 +11,10 @@ export function Home({ archive }: { archive: Archive }) {
   const release = archive.releases.find(item => item.published)
   const openDisc = useContext(DiscNavigation)
   return <div className="home-page">
-    <div className="home-title-row" data-intro-enter><h1 className="home-wordmark" tabIndex={-1}>a.l.i.v.e</h1><p className="home-definition"><strong className="ink-emphasis">actual life,</strong></p></div>
+    <div className="home-title-row" data-scroll-fade><HomePencil/><div className="home-title-content" data-intro-enter><h1 className="home-wordmark" tabIndex={-1}>a.l.i.v.e</h1><p className="home-definition"><strong className="ink-emphasis">actual life by tamerlan yessimov</strong></p></div></div>
     <div className="home-spread" data-scroll-reveal>
       <HomeVideo sources={site.homeVideos}/>
     </div>
-    <LivingTypography/>
     <section className="home-listening-band" aria-labelledby="listening-title">
     <div className="home-listening" data-scroll-reveal>
       <div><h2 id="listening-title">Some moments<br/>have a sound.</h2><p><strong className="ink-emphasis">{site.introduction}</strong></p><Link className="underlined-link" to="/music">Enter the listening room <ArrowUpRight size={19}/></Link></div>

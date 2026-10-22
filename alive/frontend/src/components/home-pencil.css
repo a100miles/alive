@@ -1,0 +1,44 @@
+.home-title-row { position: relative; }
+.home-pencil { position: absolute; inset: 0; pointer-events: none; }
+.pencil-definitions { position: absolute; width: 0; height: 0; }
+.pencil-sun { position: absolute; top: -88px; right: 0; width: clamp(150px, 14vw, 225px); padding: 0; pointer-events: auto; color: var(--ink); }
+.pencil-sun svg { display: block; width: 100%; overflow: hidden; }
+.pencil-sun:focus-visible { outline-offset: -8px; }
+.pencil-meadow { position: absolute; bottom: 3.5%; left: 6%; width: 88%; height: auto; max-height: 23%; }
+.pencil-ray { stroke-dasharray: 1 1; animation: pencil-retrace var(--trace-duration) linear var(--trace-delay) infinite; animation-play-state: paused; }
+.pencil-flower { transform-box: view-box; animation: pencil-wind var(--wind-duration) ease-in-out var(--wind-delay) infinite; animation-play-state: paused; }
+.pencil-flower-echo { opacity: var(--echo-opacity); animation-name: pencil-wind, pencil-wind-echo; }
+.home-pencil[data-running="true"] :is(.pencil-ray, .pencil-flower) { animation-play-state: running; }
+body:has(.intro[open]) :is(.pencil-ray, .pencil-flower) { animation-play-state: paused; }
+@keyframes pencil-wind {
+  0%, 100% { transform: rotate(-3deg) skewX(-1deg); }
+  28% { transform: rotate(var(--wind-lean)) skewX(2deg); }
+  46% { transform: rotate(2deg) skewX(.5deg); }
+  65% { transform: rotate(4deg) skewX(1deg); }
+  84% { transform: rotate(-4deg) skewX(-1.5deg); }
+}
+@keyframes pencil-wind-echo {
+  0%, 46%, 100% { opacity: .025; }
+  23%, 72% { opacity: var(--echo-opacity); }
+}
+@keyframes pencil-retrace {
+  0% { stroke-dashoffset: 1; opacity: 0; }
+  2% { stroke-dashoffset: 1; opacity: .9; }
+  4% { stroke-dashoffset: .72; opacity: .95; }
+  5% { stroke-dashoffset: .68; opacity: .8; }
+  8% { stroke-dashoffset: .23; opacity: 1; }
+  10%, 66% { stroke-dashoffset: 0; opacity: .9; }
+  92%, 100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@media (max-width: 600px) {
+  .pencil-sun { top: -76px; width: 150px; }
+  .pencil-meadow { left: 3%; width: 94%; bottom: 5%; height: 115px; }
+}
+@media (max-height: 480px) and (min-width: 601px) {
+  .pencil-meadow { max-height: 18%; bottom: 1%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pencil-ray { animation: none; stroke-dashoffset: 0; opacity: .65; }
+  .pencil-flower { animation: none; transform: none; }
+  .pencil-flower-echo { display: none; }
+}

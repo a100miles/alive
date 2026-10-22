@@ -9,3 +9,15 @@ Only the used font faces are warmed through FontFaceSet before animation begins.
 Verification: frontend typecheck, lint, production build and all 10 unit tests passed. Go tests and vet passed; gofmt reported no files. A focused Playwright test passed in Edge at 1440, 768, 390 and 320px, checking layer fit, stable word bounding boxes, no horizontal overflow, keyboard pause, offscreen pause and dynamic reduced motion. Desktop/mobile screenshots were visually inspected in `.impeccable/living-typography-1440.png` and `.impeccable/living-typography-390.png`. The first offscreen test used a viewport tall enough to still contain the element; it was corrected to actually scroll the element out of view. Safari and physical devices were not tested.
 
 Existing gallery, scroll reveal, music presentation, navigation and grain code were not changed.
+
+## Compact spacing and removed pause control — 2026-10-22
+
+Removed the 76–100px minimum height, set margin to zero and reduced vertical padding from 12px to 4px. The phrase is now a non-interactive div with a single screen-reader text alternative; click/tap and keyboard pause controls, tooltips and pressed state are removed. Offscreen/document visibility suspension and dynamic reduced-motion support remain.
+
+Verification: frontend typecheck, lint, build and all 10 unit tests passed; Go test/fmt/vet passed. The updated Edge browser test passed at 1440, 768, 390 and 320px, covering fit, stable word geometry, overflow, continued animation after clicking, offscreen suspension and reduced motion. Desktop/mobile screenshots were inspected. Safari and physical devices were not tested.
+
+Follow-up spacing reduction: removed the remaining 4px vertical padding, reduced word height from 1.6em to 1.4em and line-height from 1.4 to 1.2, preserving font sizes. Repeated frontend check/build/10 unit tests, Go test/fmt/vet and the four-width Edge typography test successfully; refreshed desktop/mobile captures were inspected. Safari and physical devices remain untested.
+
+Further text and spacing reduction: font size now scales from 18–32px instead of 23–42px, word height is 1.3em and line-height is 1.1. Margin and vertical padding remain zero. Frontend check/build/10 unit tests, Go test/fmt/vet and the four-width Edge typography test passed again; desktop/mobile captures were inspected. Safari and physical devices remain untested.
+
+Faster font changes: each word now advances every 1.2, 1.3 or 1.4 seconds (previously 1.9, 2.07 or 2.24 seconds), preserving staggered phases and reduced-motion support. Dissolves now last approximately 240–280ms. Frontend check/build/10 unit tests, Go test/fmt/vet and the Edge browser test at 1440/768/390/320px passed. Safari and physical devices were not tested.
