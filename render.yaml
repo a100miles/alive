@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: alive-test
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./alive/Dockerfile
+    dockerContext: ./alive
+    healthCheckPath: /api/v1/health
+    autoDeployTrigger: off

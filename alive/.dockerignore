@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/.env
+**/.env.*
+**/*.exe
+**/test-results
+**/playwright-report
+**/*.tsbuildinfo
+docs
+frontend/e2e
