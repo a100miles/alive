@@ -19,7 +19,7 @@ test('film strip ignores pause gestures and suspends offscreen and for reduced m
     const rect = video.getBoundingClientRect()
     return { actual: video.videoWidth / video.videoHeight, displayed: rect.width / rect.height, fit: getComputedStyle(video).objectFit }
   }))
-  ratios.forEach(ratio => { expect(ratio.actual).toBe(.75); expect(ratio.displayed).toBeCloseTo(.75, 2); expect(ratio.fit).toBe('contain') })
+  ratios.forEach(ratio => { expect(ratio.actual).toBe(.75); expect(ratio.displayed).toBeCloseTo(.75, 2); expect(ratio.fit).toBe('cover') })
   await stage.click()
   await stage.dispatchEvent('keydown', { key: ' ' })
   await stage.dispatchEvent('keydown', { key: 'Enter' })

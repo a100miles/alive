@@ -12,7 +12,7 @@ export function Home({ archive }: { archive: Archive }) {
   const openDisc = useContext(DiscNavigation)
   return <div className="home-page">
     <div className="home-title-row" data-scroll-fade><HomePencil/><div className="home-title-content" data-intro-enter><h1 className="home-wordmark" tabIndex={-1}>a.l.i.v.e</h1><p className="home-definition"><strong className="ink-emphasis">actual life by tamerlan yessimov</strong></p></div></div>
-    <div className="home-spread" data-scroll-reveal>
+    <div className="home-spread">
       <HomeVideo sources={site.homeVideos}/>
     </div>
     <section className="home-listening-band" aria-labelledby="listening-title">

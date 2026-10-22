@@ -4,6 +4,7 @@ import type { Release, Track } from '../types';
 interface AudioContextValue {
   choose: (trackId: string) => void;
   toggle: () => void;
+  close: () => void;
   next: () => void;
   previous: () => void;
   seek: (seconds: number) => void;
@@ -151,6 +152,23 @@ export function AudioProvider({ children, releases, tracks }: { children: ReactN
     }
   }, [invalidatePlay, requestPlay]);
 
+  const close = useCallback(() => {
+    invalidatePlay();
+    const audio = audioRef.current;
+    if (audio) {
+      audio.pause();
+      audio.removeAttribute('src');
+      audio.load();
+    }
+    selectedRef.current = undefined;
+    setSelected(undefined);
+    setPlaying(false);
+    setLoading(false);
+    setError('');
+    setCurrentTime(0);
+    setMediaDuration(0);
+  }, [invalidatePlay]);
+
   const track = tracks.find((item) => item.id === selected);
   const release = releases.find((item) => item.id === track?.releaseId);
   const duration = mediaDuration || track?.duration || 0;
@@ -176,7 +194,7 @@ export function AudioProvider({ children, releases, tracks }: { children: ReactN
     setMuted(audio.muted);
   }, []);
 
-  return <AudioContext.Provider value={{ choose, toggle, next, previous, seek, setVolume, toggleMute, track, release, playing, loading, error, currentTime, duration, volume, muted }}>{children}</AudioContext.Provider>;
+  return <AudioContext.Provider value={{ choose, toggle, close, next, previous, seek, setVolume, toggleMute, track, release, playing, loading, error, currentTime, duration, volume, muted }}>{children}</AudioContext.Provider>;
 }
 
 export function useAudio() {

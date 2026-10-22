@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import type { Album, Photo } from '../types'
 import { useReducedMotion } from '../hooks/useReducedMotion'
@@ -44,7 +44,7 @@ export function PhotoStrip({ albums, photos }: { albums: Album[]; photos: Photo[
   }
   return <div className="photography-page">
     <div className="archive-heading page-padding"><div><h1 className="display-heading" tabIndex={-1}>Moments, held.</h1><p>A collection of things that asked me to stop.</p></div><span className="archive-total">{String(photos.length).padStart(2, '0')} photographs</span></div>
-    <div className="album-bar page-padding" role="group" aria-label="Photography collection"><button aria-pressed={album === 'all'} onClick={() => { setAlbum('all'); setActive(0); rail.current?.scrollTo(0, 0) }}>All moments</button>{albums.map(item => <button aria-pressed={album === item.id} key={item.id} onClick={() => { setAlbum(item.id); setActive(0); rail.current?.scrollTo(0, 0) }}>{item.title}</button>)}<span className="small-note">Sample archive</span></div>
+    <div className="album-bar page-padding" role="group" aria-label="Photography collection"><button aria-pressed={album === 'all'} onClick={() => { setAlbum('all'); setActive(0); rail.current?.scrollTo(0, 0) }}>All moments</button>{albums.map(item => <button aria-pressed={album === item.id} key={item.id} onClick={() => { setAlbum(item.id); setActive(0); rail.current?.scrollTo(0, 0) }}>{item.title}</button>)}</div>
     {collection.length ? <><div className="photo-rail" key={album} ref={rail} tabIndex={0} role="region" aria-roledescription="carousel" aria-label="Photographs. Use left and right arrow keys to browse." onKeyDown={event => { if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); go(active + (event.key === 'ArrowRight' ? 1 : -1)) } }} onScroll={() => {
       const el = rail.current
       if (el) setActive(nearestCenter(Array.from(el.children).map(child => (child as HTMLElement).offsetLeft + (child as HTMLElement).offsetWidth / 2), el.scrollLeft + el.clientWidth / 2))

@@ -12,7 +12,7 @@ function ContactIcon({ label }: { label: string }) {
 
 export function Contact() {
   return <div className="contact-page page-padding">
-    <h1 className="display-heading" tabIndex={-1}>Let?s keep<br/>in touch.</h1>
+    <h1 className="display-heading" tabIndex={-1}>Let's keep<br/>in touch.</h1>
     <div className="contact-body"><p>For a shared idea,<br/>a collaboration,<br/>or just a hello.</p>
       <ul className="contact-links" aria-label="Contact Tamerlan">
         {site.contacts.map(link => <li key={link.label}><a href={link.url}

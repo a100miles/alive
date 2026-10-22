@@ -27,8 +27,10 @@ export function startFilmStrip(stage: HTMLDivElement, sources: string[], reduced
     videos.forEach((video, index) => {
       const x = positions[index], width = widths[index]
       const onscreen = visible && x < viewport && x + width > 0
-      const nearby = visible && x < viewport + 160 && x + width > -160
-      if (nearby && !video.hasAttribute('src') && !failed.has(index)) {
+      // Keep the current frames when vertically offscreen; unloading them flashes
+      // the page background at the viewport edge and on reverse scrolling.
+      const nearby = x < viewport + 160 && x + width > -160
+      if (visible && nearby && !video.hasAttribute('src') && !failed.has(index)) {
         video.src = sources[index]; video.load()
       }
       if (onscreen && run && !failed.has(index)) {
@@ -87,9 +89,9 @@ export function startFilmStrip(stage: HTMLDivElement, sources: string[], reduced
     return () => { video.removeEventListener('loadedmetadata', metadata); video.removeEventListener('error', error) }
   })
   const observer = new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting && entry.intersectionRatio >= .1
+    visible = entry.isIntersecting
     update()
-  }, { threshold: .1 })
+  }, { threshold: 0 })
   const resize = new ResizeObserver(measure)
   const scroll = () => { if (reduced) { draw(); syncMedia() } }
   measure(); resize.observe(stage); observer.observe(stage)

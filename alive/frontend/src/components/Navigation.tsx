@@ -1,6 +1,6 @@
 ﻿import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
+import { X } from 'lucide-react'
 
 const links = [{ to: '/', label: 'Home' }, { to: '/photography', label: 'Photography' }, { to: '/music', label: 'Music' }, { to: '/about', label: 'About' }, { to: '/contact', label: 'Contact' }]
 export function Navigation() {
@@ -16,7 +16,7 @@ export function Navigation() {
   }, [open])
   return <header className="site-header">
     <nav className="desktop-nav" aria-label="Main navigation">{links.map((link, index) => <NavLink key={link.to} to={link.to} end><span className="nav-label" style={{ '--nav-delay': `${index * 45}ms` } as CSSProperties}>{link.label}</span></NavLink>)}</nav>
-    <button className="icon-button menu-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded={open} onClick={() => { setOpen(true); dialog.current?.showModal() }}><Menu size={22}/></button>
+    <button className="menu-toggle" aria-label="Open menu" aria-haspopup="dialog" aria-expanded={open} onClick={() => { setOpen(true); dialog.current?.showModal() }}>menu</button>
     <dialog ref={dialog} className="mobile-menu" aria-label="Navigation" onClose={() => setOpen(false)}>
       <div className="mobile-menu-top"><button className="icon-button" aria-label="Close menu" onClick={() => dialog.current?.close()}><X size={24}/></button></div>
       <nav aria-label="Mobile navigation">{links.map((link, index) => <NavLink key={link.to} to={link.to} end onClick={() => dialog.current?.close()}><span className="nav-label" style={{ '--nav-delay': `${index * 45}ms` } as CSSProperties}>{link.label}</span></NavLink>)}</nav>

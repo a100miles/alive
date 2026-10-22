@@ -207,3 +207,8 @@ The home title and existing reveal sections now fade progressively as their lowe
 
 Verification: frontend typecheck/lint/build and all 10 unit tests passed; Go test/fmt/vet passed. Four existing Edge film tests passed, covering media ratios, bounded loading, playback controls, offscreen suspension, reduced motion and desktop/tablet/mobile inspection. Additional desktop/mobile checks confirmed installation removal, larger film bounds (700px at 1440px and 458px at 390px), original 3:4 ratio, no horizontal overflow, departure opacity near 0.54 partway through scrolling, reverse restoration and dynamic reduced-motion reset. Desktop/mobile film screenshots were inspected. Safari and physical devices were not tested.
 
+
+## Smoky scroll glass - 2026-10-22
+
+At the owner's request, section opacity fades are removed: outgoing content keeps its original tones instead of washing into the milk background. Arrival retains only the existing small vertical movement. The bounded header frost now uses 10px blur, a translucent charcoal gradient and a soft inset shadow; its strength follows scroll position and clears at the top. Reduced motion and forced colors hide this decorative layer. Focused sections suppress arrival transforms. This supersedes the earlier scroll departure opacity treatment.
+
