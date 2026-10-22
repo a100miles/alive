@@ -1,5 +1,7 @@
 import { Mail } from 'lucide-react'
 import { site } from '../config'
+import { ContactBirds } from '../components/ContactBirds'
+import { ContactFlower } from '../components/ContactFlower'
 
 function ContactIcon({ label }: { label: string }) {
   if (label === 'Email') return <Mail size={32} strokeWidth={1.5} aria-hidden="true"/>
@@ -12,10 +14,11 @@ function ContactIcon({ label }: { label: string }) {
 
 export function Contact() {
   return <div className="contact-page page-padding">
+    <ContactBirds/>
     <h1 className="display-heading" tabIndex={-1}>Let's keep<br/>in touch.</h1>
     <div className="contact-body"><p>For a shared idea,<br/>a collaboration,<br/>or just a hello.</p>
       <ul className="contact-links" aria-label="Contact Tamerlan">
-        {site.contacts.map(link => <li key={link.label}><a href={link.url}
+        {site.contacts.map((link, index) => <li key={link.label}><ContactFlower index={index}/><a href={link.url}
           aria-label={link.label === 'Email' ? 'Email Tamerlan at tamerlanesimov@gmail.com' : link.label + ' (opens in a new tab)'}
           title={link.label === 'Email' ? 'tamerlanesimov@gmail.com' : link.label}
           target={link.url.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer">

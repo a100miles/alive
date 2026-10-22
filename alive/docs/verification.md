@@ -142,3 +142,11 @@ Removed only the About page p.small-note editorial placeholder. Photo caption re
 ## Footer divider removal - 2026-10-22
 
 Removed the shared footer top border. Edge at 1440/390px confirmed 0px top borders on home, photography, music, about, contact and not-found; screenshots inspected. Frontend check/build, 10 tests and Go test/fmt/vet passed. Safari and physical devices not tested.
+
+## About portrait replacement - 2026-10-22
+
+About now uses supplied me2.jpg with its actual 1280x1023 dimensions and updated descriptive alt text. Edge desktop/mobile image decoding verified and captures inspected. Frontend check/build, 10 tests and Go test/fmt/vet passed. Safari and physical devices not tested.
+
+
+### Shared footer text removal — 2026-10-22
+Removed Photography / 2025–2026 from the shared App footer used by all routes. Frontend typecheck/lint/build and all 10 tests passed. Go test/vet passed and gofmt reported no changes; Go emitted a non-fatal cache trim permission warning. Edge DOM checks at 1440px and 390px confirmed the old footer text is absent. No screenshot or physical-device inspection was performed for this text-only change.
